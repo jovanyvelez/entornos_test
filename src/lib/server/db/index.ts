@@ -5,7 +5,7 @@ import { createClient } from '@libsql/client';
 import * as schema from '$lib/server/db/schema';
 
 if (!DATABASE_URL) throw new Error('DATABASE_URL no fue definida en entorno');
-
+if (!DATABASE_TOKEN) throw new Error('DATABASE_URL no fue definida en entorno');
 
 const client = createClient({ url: DATABASE_URL, authToken: DATABASE_TOKEN });
 

@@ -6,7 +6,7 @@ console.log(process.env.DATABASE_URL);
 
 export default defineConfig({
   out: './drizzle',
-  schema:'./src/lib/server/db/schema.ts',
+  schema:'./src/lib/server/db/data.ts',
   dialect: 'turso',
   casing: 'snake_case',
   dbCredentials: {
