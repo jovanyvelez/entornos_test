@@ -1,0 +1,911 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "6",
+  "dialect": "sqlite",
+  "tables": {
+    "Categorias": {
+      "name": "Categorias",
+      "columns": {
+        "categoria_id": {
+          "autoincrement": false,
+          "name": "categoria_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "nombre": {
+          "autoincrement": false,
+          "name": "nombre",
+          "type": "text(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion": {
+          "autoincrement": false,
+          "name": "descripcion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "padre_categoria_id": {
+          "autoincrement": false,
+          "name": "padre_categoria_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "idx_nombre_categoria": {
+          "name": "idx_nombre_categoria",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Categorias_padre_categoria_id_Categorias_categoria_id_fk": {
+          "name": "Categorias_padre_categoria_id_Categorias_categoria_id_fk",
+          "tableFrom": "Categorias",
+          "tableTo": "Categorias",
+          "columnsFrom": [
+            "padre_categoria_id"
+          ],
+          "columnsTo": [
+            "categoria_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "ListasPrecios": {
+      "name": "ListasPrecios",
+      "columns": {
+        "lista_precio_id": {
+          "autoincrement": false,
+          "name": "lista_precio_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "nombre": {
+          "autoincrement": false,
+          "name": "nombre",
+          "type": "text(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion": {
+          "autoincrement": false,
+          "name": "descripcion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "idx_nombre_lista_precio": {
+          "name": "idx_nombre_lista_precio",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Clientes": {
+      "name": "Clientes",
+      "columns": {
+        "cliente_id": {
+          "autoincrement": false,
+          "name": "cliente_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "nombre": {
+          "autoincrement": false,
+          "name": "nombre",
+          "type": "text(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "apellido": {
+          "autoincrement": false,
+          "name": "apellido",
+          "type": "text(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "type": "text(150)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "telefono": {
+          "autoincrement": false,
+          "name": "telefono",
+          "type": "text(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "direccion": {
+          "autoincrement": false,
+          "name": "direccion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_registro": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "fecha_registro",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lista_precio_id": {
+          "autoincrement": false,
+          "name": "lista_precio_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "idx_lista_precio_cliente": {
+          "name": "idx_lista_precio_cliente",
+          "columns": [
+            "lista_precio_id"
+          ],
+          "isUnique": false
+        },
+        "idx_nombre_cliente": {
+          "name": "idx_nombre_cliente",
+          "columns": [
+            "nombre",
+            "apellido"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Clientes_lista_precio_id_ListasPrecios_lista_precio_id_fk": {
+          "name": "Clientes_lista_precio_id_ListasPrecios_lista_precio_id_fk",
+          "tableFrom": "Clientes",
+          "tableTo": "ListasPrecios",
+          "columnsFrom": [
+            "lista_precio_id"
+          ],
+          "columnsTo": [
+            "lista_precio_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Productos": {
+      "name": "Productos",
+      "columns": {
+        "producto_id": {
+          "autoincrement": false,
+          "name": "producto_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "codigo_barras": {
+          "autoincrement": false,
+          "name": "codigo_barras",
+          "type": "text(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nombre": {
+          "autoincrement": false,
+          "name": "nombre",
+          "type": "text(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion": {
+          "autoincrement": false,
+          "name": "descripcion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "categoria_id": {
+          "autoincrement": false,
+          "name": "categoria_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "marca": {
+          "autoincrement": false,
+          "name": "marca",
+          "type": "text(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "precio_compra": {
+          "autoincrement": false,
+          "name": "precio_compra",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "precio_venta": {
+          "autoincrement": false,
+          "name": "precio_venta",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "stock_total": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "stock_total",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tiene_variantes": {
+          "default": "(FALSE)",
+          "autoincrement": false,
+          "name": "tiene_variantes",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "idx_categoria_producto": {
+          "name": "idx_categoria_producto",
+          "columns": [
+            "categoria_id"
+          ],
+          "isUnique": false
+        },
+        "idx_nombre_producto": {
+          "name": "idx_nombre_producto",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Productos_categoria_id_Categorias_categoria_id_fk": {
+          "name": "Productos_categoria_id_Categorias_categoria_id_fk",
+          "tableFrom": "Productos",
+          "tableTo": "Categorias",
+          "columnsFrom": [
+            "categoria_id"
+          ],
+          "columnsTo": [
+            "categoria_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Variantes": {
+      "name": "Variantes",
+      "columns": {
+        "variante_id": {
+          "autoincrement": false,
+          "name": "variante_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "producto_id": {
+          "autoincrement": false,
+          "name": "producto_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "talla": {
+          "autoincrement": false,
+          "name": "talla",
+          "type": "text(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "color": {
+          "autoincrement": false,
+          "name": "color",
+          "type": "text(30)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "codigo_barras": {
+          "autoincrement": false,
+          "name": "codigo_barras",
+          "type": "text(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "stock": {
+          "autoincrement": false,
+          "name": "stock",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "idx_producto_variante": {
+          "name": "idx_producto_variante",
+          "columns": [
+            "producto_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Variantes_producto_id_Productos_producto_id_fk": {
+          "name": "Variantes_producto_id_Productos_producto_id_fk",
+          "tableFrom": "Variantes",
+          "tableTo": "Productos",
+          "columnsFrom": [
+            "producto_id"
+          ],
+          "columnsTo": [
+            "producto_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "ProductosListaPrecios": {
+      "name": "ProductosListaPrecios",
+      "columns": {
+        "producto_lista_id": {
+          "autoincrement": false,
+          "name": "producto_lista_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "producto_id": {
+          "autoincrement": false,
+          "name": "producto_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variante_id": {
+          "autoincrement": false,
+          "name": "variante_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lista_precio_id": {
+          "autoincrement": false,
+          "name": "lista_precio_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "precio": {
+          "autoincrement": false,
+          "name": "precio",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_inicio": {
+          "autoincrement": false,
+          "name": "fecha_inicio",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_fin": {
+          "autoincrement": false,
+          "name": "fecha_fin",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "ProductosListaPrecios_lista_precio_id_ListasPrecios_lista_precio_id_fk": {
+          "name": "ProductosListaPrecios_lista_precio_id_ListasPrecios_lista_precio_id_fk",
+          "tableFrom": "ProductosListaPrecios",
+          "tableTo": "ListasPrecios",
+          "columnsFrom": [
+            "lista_precio_id"
+          ],
+          "columnsTo": [
+            "lista_precio_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "ProductosListaPrecios_variante_id_Variantes_variante_id_fk": {
+          "name": "ProductosListaPrecios_variante_id_Variantes_variante_id_fk",
+          "tableFrom": "ProductosListaPrecios",
+          "tableTo": "Variantes",
+          "columnsFrom": [
+            "variante_id"
+          ],
+          "columnsTo": [
+            "variante_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "ProductosListaPrecios_producto_id_Productos_producto_id_fk": {
+          "name": "ProductosListaPrecios_producto_id_Productos_producto_id_fk",
+          "tableFrom": "ProductosListaPrecios",
+          "tableTo": "Productos",
+          "columnsFrom": [
+            "producto_id"
+          ],
+          "columnsTo": [
+            "producto_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Ubicaciones": {
+      "name": "Ubicaciones",
+      "columns": {
+        "ubicacion_id": {
+          "autoincrement": false,
+          "name": "ubicacion_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "nombre": {
+          "autoincrement": false,
+          "name": "nombre",
+          "type": "text(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "departamento": {
+          "autoincrement": false,
+          "name": "departamento",
+          "type": "text(50)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "idx_nombre_ubicacion": {
+          "name": "idx_nombre_ubicacion",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "StockUbicacion": {
+      "name": "StockUbicacion",
+      "columns": {
+        "stock_ubicacion_id": {
+          "autoincrement": false,
+          "name": "stock_ubicacion_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "producto_id": {
+          "autoincrement": false,
+          "name": "producto_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variante_id": {
+          "autoincrement": false,
+          "name": "variante_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ubicacion_id": {
+          "autoincrement": false,
+          "name": "ubicacion_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cantidad": {
+          "autoincrement": false,
+          "name": "cantidad",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "StockUbicacion_ubicacion_id_Ubicaciones_ubicacion_id_fk": {
+          "name": "StockUbicacion_ubicacion_id_Ubicaciones_ubicacion_id_fk",
+          "tableFrom": "StockUbicacion",
+          "tableTo": "Ubicaciones",
+          "columnsFrom": [
+            "ubicacion_id"
+          ],
+          "columnsTo": [
+            "ubicacion_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "StockUbicacion_variante_id_Variantes_variante_id_fk": {
+          "name": "StockUbicacion_variante_id_Variantes_variante_id_fk",
+          "tableFrom": "StockUbicacion",
+          "tableTo": "Variantes",
+          "columnsFrom": [
+            "variante_id"
+          ],
+          "columnsTo": [
+            "variante_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "StockUbicacion_producto_id_Productos_producto_id_fk": {
+          "name": "StockUbicacion_producto_id_Productos_producto_id_fk",
+          "tableFrom": "StockUbicacion",
+          "tableTo": "Productos",
+          "columnsFrom": [
+            "producto_id"
+          ],
+          "columnsTo": [
+            "producto_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Pedidos": {
+      "name": "Pedidos",
+      "columns": {
+        "pedido_id": {
+          "autoincrement": false,
+          "name": "pedido_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "cliente_id": {
+          "autoincrement": false,
+          "name": "cliente_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_pedido": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "fecha_pedido",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "estado": {
+          "autoincrement": false,
+          "name": "estado",
+          "type": "text(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total": {
+          "autoincrement": false,
+          "name": "total",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "idx_cliente_pedido": {
+          "name": "idx_cliente_pedido",
+          "columns": [
+            "cliente_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Pedidos_cliente_id_Clientes_cliente_id_fk": {
+          "name": "Pedidos_cliente_id_Clientes_cliente_id_fk",
+          "tableFrom": "Pedidos",
+          "tableTo": "Clientes",
+          "columnsFrom": [
+            "cliente_id"
+          ],
+          "columnsTo": [
+            "cliente_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "EstadosPedidos": {
+      "name": "EstadosPedidos",
+      "columns": {
+        "estado_id": {
+          "autoincrement": false,
+          "name": "estado_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "pedido_id": {
+          "autoincrement": false,
+          "name": "pedido_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "estado": {
+          "autoincrement": false,
+          "name": "estado",
+          "type": "text(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_cambio": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "fecha_cambio",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "EstadosPedidos_pedido_id_Pedidos_pedido_id_fk": {
+          "name": "EstadosPedidos_pedido_id_Pedidos_pedido_id_fk",
+          "tableFrom": "EstadosPedidos",
+          "tableTo": "Pedidos",
+          "columnsFrom": [
+            "pedido_id"
+          ],
+          "columnsTo": [
+            "pedido_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "MetodosPago": {
+      "name": "MetodosPago",
+      "columns": {
+        "metodo_pago_id": {
+          "autoincrement": false,
+          "name": "metodo_pago_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "nombre": {
+          "autoincrement": false,
+          "name": "nombre",
+          "type": "text(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion": {
+          "autoincrement": false,
+          "name": "descripcion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Facturas": {
+      "name": "Facturas",
+      "columns": {
+        "factura_id": {
+          "autoincrement": false,
+          "name": "factura_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "pedido_id": {
+          "autoincrement": false,
+          "name": "pedido_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_factura": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "fecha_factura",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "monto_total": {
+          "autoincrement": false,
+          "name": "monto_total",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "metodo_pago_id": {
+          "autoincrement": false,
+          "name": "metodo_pago_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "estado": {
+          "autoincrement": false,
+          "name": "estado",
+          "type": "text(50)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "Facturas_metodo_pago_id_MetodosPago_metodo_pago_id_fk": {
+          "name": "Facturas_metodo_pago_id_MetodosPago_metodo_pago_id_fk",
+          "tableFrom": "Facturas",
+          "tableTo": "MetodosPago",
+          "columnsFrom": [
+            "metodo_pago_id"
+          ],
+          "columnsTo": [
+            "metodo_pago_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Facturas_pedido_id_Pedidos_pedido_id_fk": {
+          "name": "Facturas_pedido_id_Pedidos_pedido_id_fk",
+          "tableFrom": "Facturas",
+          "tableTo": "Pedidos",
+          "columnsFrom": [
+            "pedido_id"
+          ],
+          "columnsTo": [
+            "pedido_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "LogsPedidos": {
+      "name": "LogsPedidos",
+      "columns": {
+        "log_id": {
+          "autoincrement": false,
+          "name": "log_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "pedido_id": {
+          "autoincrement": false,
+          "name": "pedido_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "usuario": {
+          "autoincrement": false,
+          "name": "usuario",
+          "type": "text(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cambio": {
+          "autoincrement": false,
+          "name": "cambio",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_cambio": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "fecha_cambio",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "LogsPedidos_pedido_id_Pedidos_pedido_id_fk": {
+          "name": "LogsPedidos_pedido_id_Pedidos_pedido_id_fk",
+          "tableFrom": "LogsPedidos",
+          "tableTo": "Pedidos",
+          "columnsFrom": [
+            "pedido_id"
+          ],
+          "columnsTo": [
+            "pedido_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
